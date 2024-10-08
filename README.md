@@ -34,6 +34,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 - run app in docker
 ```shell
 ./vendor/bin/sail up
+composer run-script sails
  ```
 - run docker shell
 ```shell
