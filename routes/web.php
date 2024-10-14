@@ -32,5 +32,18 @@ Route::match(['get', "post"], "/users-3", function () {
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
+//optional route params
+Route::get('/transactions/{id?}/{type}', function ($id = 'default_value') {
+    return $id;
+})->whereNumber(["id"])
+    ->whereIn('type', ["value1", "value2"]); //only these values accepted else 404
+//route param + query string parameters + DI class
+Route::get('/country/{type}/{id}?year=2024&month=5', function (\Illuminate\Http\Request $req, \App\Enums\Types $type, $id) {
+    $year = $req->get('year');
+    $month = $req->get('month');
+    $type = $type->value;
+    return $id . $type . '-' . $year . '-' . $month;
+})->where(["id" => '[0-9]+']);
+
 //REDIRECTS
 Route::redirect("/users-2", '/users-3');
