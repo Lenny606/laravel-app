@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ProcessTransactionController;
 
 //php artisan route:list
 //php artisan route:list --except-vendor/--only-vendor
@@ -34,3 +36,12 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 //REDIRECTS
 Route::redirect("/users-2", '/users-3');
+
+//TRANSACTIONS --------------------------------
+Route::get('/transactions', [TransactionController::class ,'index']);
+Route::get('/transactions/{id}', [TransactionController::class ,'show'])->whereNumber("id");
+Route::post('/transactions/create', [TransactionController::class ,'create']);
+Route::post('/transactions', [TransactionController::class ,'store']);
+
+//invokable single action controller
+Route::post('/transactions/{id}/process', ProcessTransactionController::class);
