@@ -16,11 +16,12 @@ class TransactionController extends Controller
      */
     public function index(): string
     {
-        return "index";
+        return redirect()->route('transactions'); //named route
     }
     public function show(string $id)
     {
-        return "index $id";
+        return to_route('transaction', ["id" => 5]); //named route + parameter
+
     }
     public function create()
     {

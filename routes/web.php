@@ -51,10 +51,16 @@ Route::get('/country/{type}/{id}?year=2024&month=5', function (\Illuminate\Http\
 Route::redirect("/users-2", '/users-3');
 
 //TRANSACTIONS --------------------------------
-Route::get('/transactions', [TransactionController::class ,'index']);
-Route::get('/transactions/{id}', [TransactionController::class ,'show'])->whereNumber("id");
-Route::post('/transactions/create', [TransactionController::class ,'create']);
-Route::post('/transactions', [TransactionController::class ,'store']);
-
-//invokable single action controller
-Route::post('/transactions/{id}/process', ProcessTransactionController::class);
+//group by prefix
+//Route::prefix('transactions')->group(function () {
+//    //group by controller
+//    Route::controller(TransactionController::class)->group(function () {
+//        Route::get('/', [TransactionController::class, 'index'])->name('transactions');
+//        Route::get('/{id}', [TransactionController::class, 'show'])->whereNumber("id")->name('transaction');
+//        Route::post('/create', [TransactionController::class, 'create']);
+//        Route::post('/', [TransactionController::class, 'store']);
+//    });
+//
+//    //invokable single action controller
+//    Route::post('/{id}/process', ProcessTransactionController::class);
+//});
