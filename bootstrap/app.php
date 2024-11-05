@@ -17,7 +17,15 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->prepend(\App\Http\Middleware\AssignRequestId::class);
+        $middleware->web(append: [], prepend: [], replace: []); //MW only for web requests
+        $middleware->api(); //MW only for API requests
+        //create alias for MW
+        $middleware->alias(
+            [
+                "request" => \App\Http\Middleware\AssignRequestId::class
+            ]
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

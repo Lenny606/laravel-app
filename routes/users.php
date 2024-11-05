@@ -15,6 +15,14 @@ Route::prefix('/')->group(function () {
         Route::post('/create', [UserController::class, 'create']);
         Route::get("/users", function () {
             return ['user', "users2"]; //converst automatically to json
-        });
+        })->middleware('request:123');//MW alias + argument
+        //test for MW
+        Route::get('/administration', function () {
+           return "administration" ;
+        })->middleware(\App\Http\Middleware\CheckUserRole::class . ":editor"); //adds argument
+        //grouping MW possible
+        //->withoutMiddleware() method exludes route from middleware
+
     });
 });
+
