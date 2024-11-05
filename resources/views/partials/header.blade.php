@@ -4,9 +4,8 @@
         {{-- Left Section --}}
         <div class="flex items-center md:gap-16 gap-4">
             {{-- Home Button / Icon --}}
-            <a href="{{"" }}">
+            <a href="{{"/"}}">
                 <x-hi-mini-bars3-center-left class="w-6 h-6">
-                    <!-- Replace with the HiMiniBars3CenterLeft icon SVG -->
                 </x-hi-mini-bars3-center-left>
             </a>
 
@@ -45,10 +44,10 @@
                         </ul>
                     </div>
                 @else
-                    <a href="{{ "" }}">
-                        <svg class="w-6 h-6">
-                            <!-- Replace with HiOutlineUser icon SVG -->
-                        </svg>
+                    <a href="{{ "/users/register" }}">
+                        <x-register-button >
+                            Register
+                        </x-register-button >
                     </a>
                 @endauth
             </div>
