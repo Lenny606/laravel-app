@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function() {
             //add custom file with routes
             Route::prefix('transactions')->group(base_path('routes/transactions.php'));
+            Route::prefix('users')->group(base_path('routes/users.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {

@@ -7,7 +7,7 @@ use App\Http\Controllers\ProcessTransactionController;
 
 //TRANSACTIONS --------------------------------
 //group by prefix
-Route::prefix('transactions')->group(function () {
+Route::prefix('/')->group(function () {
     //group by controller
     Route::controller(TransactionController::class)->group(function () {
         Route::get('/', [TransactionController::class, 'index'])->name('transactions');

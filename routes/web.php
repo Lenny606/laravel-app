@@ -11,28 +11,22 @@ use App\Http\Controllers\ProcessTransactionController;
 //php artisan route:cache //for PROD
 //php artisan route:clear //deletes cache
 
+//HOMEPAGE + DASHBOARD
 Route::get('/', function () {
     //TODO get list of products
     return view('homepage', ['products' => []]);
 });
-
 Route::get("/dashboard", function () {
     return "Welcome to dashboard";
 });
 
-Route::get("/users", function () {
-    return ['user', "users2"]; //converst automatically to json
-});
-
+//USERS ----
 Route::any("/users-2", function () {
     return ""; //any http method
 });
 Route::match(['get', "post"], "/users-3", function () {
     return ""; //get/post matching
 });
-
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
 
 //optional route params
 Route::get('/transactions/{id?}/{type}', function ($id = 'default_value') {
@@ -49,18 +43,3 @@ Route::get('/country/{type}/{id}?year=2024&month=5', function (\Illuminate\Http\
 
 //REDIRECTS
 Route::redirect("/users-2", '/users-3');
-
-//TRANSACTIONS --------------------------------
-//group by prefix
-//Route::prefix('transactions')->group(function () {
-//    //group by controller
-//    Route::controller(TransactionController::class)->group(function () {
-//        Route::get('/', [TransactionController::class, 'index'])->name('transactions');
-//        Route::get('/{id}', [TransactionController::class, 'show'])->whereNumber("id")->name('transaction');
-//        Route::post('/create', [TransactionController::class, 'create']);
-//        Route::post('/', [TransactionController::class, 'store']);
-//    });
-//
-//    //invokable single action controller
-//    Route::post('/{id}/process', ProcessTransactionController::class);
-//});
