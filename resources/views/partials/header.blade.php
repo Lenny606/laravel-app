@@ -5,9 +5,9 @@
         <div class="flex items-center md:gap-16 gap-4">
             {{-- Home Button / Icon --}}
             <a href="{{"" }}">
-                <svg class="w-6 h-6">
+                <x-hi-mini-bars3-center-left class="w-6 h-6">
                     <!-- Replace with the HiMiniBars3CenterLeft icon SVG -->
-                </svg>
+                </x-hi-mini-bars3-center-left>
             </a>
 
             {{-- Search Input --}}
