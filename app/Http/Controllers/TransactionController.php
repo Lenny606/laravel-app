@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function __construct(){
+    public function __construct(public readonly TransactionService $transactionService){
 
     }
 
@@ -20,7 +21,8 @@ class TransactionController extends Controller
     }
     public function show(string $id)
     {
-        return to_route('transaction', ["id" => 5]); //named route + parameter
+        $transaction = $this->transactionService->findTransaction($id);
+        return to_route('transaction', $transaction); //named route + parameter
 
     }
     public function create()
