@@ -15,6 +15,7 @@ class Stripe implements PaymentProcessor
     public function process(array $transactions): void
     {
         // TODO: Implement process() method.
+        echo 'processing payment from stripe ' . $transactions['id'];
     }
 
 }

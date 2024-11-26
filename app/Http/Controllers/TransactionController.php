@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\PaymentProcessor;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,10 @@ class TransactionController extends Controller
     {
         return redirect()->route('transactions'); //named route
     }
-    public function show(string $id)
+    public function show(string $id, PaymentProcessor $paymentProcessor)
     {
         $transaction = $this->transactionService->findTransaction($id);
+        $paymentProcessor->process($transaction);
         return to_route('transaction', $transaction); //named route + parameter
 
     }
